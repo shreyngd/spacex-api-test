@@ -4,7 +4,7 @@ import './App.scss';
 const App = () : React.ReactElement =>  {
   return (
     <div className="App">
-        Hello
+        Hello Tesla
     </div>
   );
 }
