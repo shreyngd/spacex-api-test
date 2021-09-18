@@ -1,24 +1,37 @@
 {
-    "parser": "@typescript-eslint/parser",
     "extends": [
-        "plugin:react/recommended",
+        "airbnb-typescript",
+        "airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
-        "prettier/prettier"
+        "plugin:jest/recommended",
+        "plugin:prettier/recommended"
     ],
+    "plugins": ["react", "@typescript-eslint", "jest", "import"],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
-        }
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "rules": {
-        "react/prop-types": ["off"],
-        "max-lines": ["error", 200]
+        "linebreak-style": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ]
     }
 }
