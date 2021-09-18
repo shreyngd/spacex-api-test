@@ -1,0 +1,121 @@
+.launchItem {
+    margin-bottom: 50px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    .itemContainer {
+        display: flex;
+        flex-direction: column;
+        .title {
+            font-weight: bold;
+            font-size: 1.5em;
+            // align-self: center;
+        }
+        .l2 {
+            display: flex;
+        }
+        .left {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .right {
+            margin-left: 10px;
+
+            flex: 1;
+            .info {
+                height: 35%;
+                .info1 {
+                    margin-bottom: 5px;
+                }
+                .info2 {
+                    margin-bottom: 5px;
+                }
+                .info3 {
+                    margin-bottom: 5px;
+                    .info3subDiv {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .map-icon {
+                            cursor: pointer;
+                            width: 40px;
+                        }
+                    }
+                }
+            }
+            .rocket-info {
+                height: 55%;
+                .rocket-name {
+                    margin-bottom: 10px;
+                }
+                .stages-info {
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    .stage-1 {
+                        flex: 1;
+                        border-right: 1px solid #ccc;
+                        display: flex;
+                        flex-direction: column;
+                        .title-stages {
+                            font-weight: 600;
+                            align-self: center;
+                            margin-bottom: 8px;
+                        }
+                        .core {
+                            padding: 0 5px;
+                            margin-bottom: 5px;
+                            .core-title {
+                                margin-bottom: 3px;
+                            }
+                            .core-view {
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                        }
+                    }
+                    .stage-2 {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        .title-stages {
+                            font-weight: 600;
+                            align-self: center;
+                            margin-bottom: 8px;
+                        }
+                        .payloads {
+                            padding: 0 5px;
+                            .payload {
+                                &.payload-title {
+                                    margin-bottom: 3px;
+                                }
+                                display: flex;
+                                justify-content: space-between;
+                            }
+                            .payload > div {
+                                width: 33%;
+                            }
+                            .payload > strong {
+                                width: 33%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .ships-view {
+            display: flex;
+            justify-content: center;
+            .ship-view {
+                width: 330px;
+                margin: 0 10px;
+                height: max-content;
+                .ship-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

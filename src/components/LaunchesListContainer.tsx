@@ -1,52 +1,70 @@
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import React, { useEffect } from 'react';
+import { PastLaunchQuery } from '../Queries';
+import LaunchItem from './LaunchItem';
+import './LaunchListContainer.scss';
 
-const query = gql`
-    {
-        launchesPast(limit: 10) {
-            mission_name
-            launch_date_local
-            launch_site {
-                site_name_long
-            }
-            links {
-                article_link
-                video_link
-            }
-            rocket {
-                rocket_name
-                first_stage {
-                    cores {
-                        flight
-                        core {
-                            reuse_count
-                            status
-                        }
-                    }
-                }
-                second_stage {
-                    payloads {
-                        payload_type
-                        payload_mass_kg
-                        payload_mass_lbs
-                    }
-                }
-            }
-            ships {
-                name
-                home_port
-                image
-            }
-        }
-    }
-`;
+export interface LaunchHistory {
+    mission_name: string;
+    launch_date_local: string;
+    launch_site: {
+        site_name_long: string;
+    };
+    links: {
+        article_link: string;
+        video_link: string;
+    };
+    rocket: {
+        rocket_name: string;
+        first_stage: {
+            cores: Array<{
+                flight: number;
+                core: {
+                    reuse_count: number;
+                    status: string;
+                };
+            }>;
+        };
+        second_stage: {
+            payloads: Array<{
+                payload_type: string;
+                payload_mass_kg: number;
+                payload_mass_lbs: number;
+            }>;
+        };
+    };
+    ships: Array<{
+        name: string;
+        home_port: string;
+        image: string;
+    }>;
+}
 
-const LaunchesListContainer = (): React.ReactElement => {
-    const { data, loading } = useQuery(query);
+interface LaunchHistoryData {
+    launchesPast: LaunchHistory[];
+}
+
+interface LaunchHistoryVars {
+    limit: number;
+    offset?: number;
+}
+
+const LaunchesListContainer: React.FC = () => {
+    const { data, loading } = useQuery<LaunchHistoryData, LaunchHistoryVars>(
+        PastLaunchQuery,
+    );
     useEffect(() => {
         console.log(data);
     }, [data, loading]);
-    return <div></div>;
+    return (
+        <div className="launchListContainer">
+            <div className="subContainer">
+                {data?.launchesPast.map((launch) => (
+                    <LaunchItem data={launch} />
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default LaunchesListContainer;
