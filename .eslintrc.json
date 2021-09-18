@@ -3,8 +3,7 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "prettier/prettier"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
@@ -20,6 +19,6 @@
     },
     "rules": {
         "react/prop-types": ["off"],
-        "max-lines-per-function": ["error", 40]
+        "max-lines": ["error", 200]
     }
 }
