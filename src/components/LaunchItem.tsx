@@ -5,7 +5,6 @@ import './LaunchItem.scss';
 import ReactPlayer from 'react-player/youtube';
 import { format } from 'date-fns';
 import MapIcon from '../assets/map.png';
-import { da } from 'date-fns/locale';
 
 interface LaunchItemProps {
     data: LaunchHistory;
