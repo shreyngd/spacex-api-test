@@ -1,0 +1,24 @@
+.rocket-container {
+    position: fixed;
+    bottom: -40px;
+    animation: xAxis 10s alternate ease-in;
+}
+
+.rocket {
+    width: 35px;
+    animation: yAxis 10s alternate ease-in;
+}
+
+@keyframes xAxis {
+    50% {
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        transform: translateX(1500px);
+    }
+}
+
+@keyframes yAxis {
+    50% {
+        animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        transform: translateY(-900px);
+    }
+}
