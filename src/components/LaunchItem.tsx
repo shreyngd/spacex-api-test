@@ -5,8 +5,11 @@ import './LaunchItem.scss';
 import ReactPlayer from 'react-player/youtube';
 import { format } from 'date-fns';
 import MapIcon from '../assets/map.png';
-import { useAppDispatch } from '../app/hooks';
-import { addToComapare } from '../features/compare/compareSlice';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import {
+    addToComapare,
+    selectCompareCount,
+} from '../features/compare/compareSlice';
 
 interface LaunchItemProps {
     data: LaunchHistory;
@@ -14,6 +17,7 @@ interface LaunchItemProps {
 
 const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
     const dispatch = useAppDispatch();
+    const compareCount = useAppSelector(selectCompareCount);
     const openLocation = (): void => {
         window.open(
             'https://www.google.com/maps?q=' +
@@ -25,10 +29,17 @@ const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
         <div className="launchItem">
             <div className="itemContainer">
                 <div className="title">
-                    {data.mission_name}
-                    <button onClick={() => dispatch(addToComapare(data))}>
-                        Add to compare
-                    </button>
+                    <span>{data.mission_name}</span>
+                    <div
+                        className={`compare-add-button ${
+                            compareCount === 2 && 'disabled'
+                        }`}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => dispatch(addToComapare(data))}
+                    >
+                        Add for comparision
+                    </div>
                 </div>
                 <HR />
                 <div className="l2">

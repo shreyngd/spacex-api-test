@@ -95,24 +95,34 @@ const LaunchesListContainer: React.FC = () => {
     return (
         <div className="launchListContainer">
             <div className="subContainer" ref={scrollRef}>
-                <InfiniteScroll
-                    pageStart={0}
-                    initialLoad={false}
-                    loadMore={throttle(loadMore, 1000)}
-                    hasMore={data ? data.launchesPast.length % 10 === 0 : false}
-                    loader={
-                        <div className="loader" key={0}>
-                            Loading ...
-                        </div>
-                    }
-                    useWindow={false}
-                    getScrollParent={() => scrollRef.current}
-                    threshold={10}
-                >
-                    {data?.launchesPast.map((launch) => (
-                        <LaunchItem data={launch} key={launch.id} />
-                    ))}
-                </InfiniteScroll>
+                {data && (
+                    <InfiniteScroll
+                        pageStart={0}
+                        initialLoad={false}
+                        loadMore={throttle(loadMore, 1000)}
+                        hasMore={
+                            data ? data.launchesPast.length % 10 === 0 : false
+                        }
+                        loader={
+                            <div
+                                className="loader"
+                                key={0}
+                                style={{
+                                    color: '#efefef',
+                                }}
+                            >
+                                Loading ...
+                            </div>
+                        }
+                        useWindow={false}
+                        getScrollParent={() => scrollRef.current}
+                        threshold={10}
+                    >
+                        {data?.launchesPast.map((launch) => (
+                            <LaunchItem data={launch} key={launch.id} />
+                        ))}
+                    </InfiniteScroll>
+                )}
             </div>
         </div>
     );

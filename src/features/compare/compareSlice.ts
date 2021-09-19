@@ -5,11 +5,13 @@ import { LaunchHistory } from '../../components/LaunchesListContainer';
 export interface CompareState {
     compareData: Record<string, LaunchHistory>;
     maximized: boolean;
+    compareCount: number;
 }
 
 const initialState: CompareState = {
     compareData: {},
     maximized: false,
+    compareCount: 0,
 };
 
 export const compareSlice = createSlice({
@@ -25,10 +27,25 @@ export const compareSlice = createSlice({
             // doesn't actually mutate the state because it uses the Immer library,
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changes
+            if (!state.compareData[action.payload.id]) {
+                state.compareCount += 1;
+            }
             state.compareData[action.payload.id] = action.payload;
         },
         deleteFromCompare: (state, action: PayloadAction<string>) => {
             delete state.compareData[action.payload];
+            state.compareCount -= 1;
+        },
+        allClear: (state) => {
+            state.maximized = false;
+            state.compareData = {};
+            state.compareCount = 0;
+        },
+        openModal: (state) => {
+            state.maximized = true;
+        },
+        closeModal: (state) => {
+            state.maximized = false;
         },
         // Use the PayloadAction type to declare the contents of `action.payload`
     },
@@ -46,7 +63,13 @@ export const compareSlice = createSlice({
     // },
 });
 
-export const { addToComapare, deleteFromCompare } = compareSlice.actions;
+export const {
+    addToComapare,
+    deleteFromCompare,
+    allClear,
+    openModal,
+    closeModal,
+} = compareSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -54,8 +77,12 @@ export const { addToComapare, deleteFromCompare } = compareSlice.actions;
 export const selectCompareData = (
     state: RootState,
 ): Record<string, LaunchHistory> => state.compare.compareData;
+
 export const selectCompareState = (state: RootState): boolean =>
     state.compare.maximized;
+
+export const selectCompareCount = (state: RootState): number =>
+    state.compare.compareCount;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

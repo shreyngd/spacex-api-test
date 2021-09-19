@@ -12,6 +12,20 @@
         .title {
             font-weight: bold;
             font-size: 1.5em;
+            display: flex;
+            align-items: center;
+
+            .compare-add-button {
+                margin-left: 20px;
+                font-size: 15px;
+                text-transform: uppercase;
+                color: #3db2ff;
+                cursor: pointer;
+                &.disabled {
+                    pointer-events: none;
+                    color: #a1a1a1;
+                }
+            }
             // align-self: center;
         }
         .l2 {
@@ -47,7 +61,7 @@
                 }
             }
             .rocket-info {
-                height: 55%;
+                height: 46%;
                 .rocket-name {
                     margin-bottom: 10px;
                 }
