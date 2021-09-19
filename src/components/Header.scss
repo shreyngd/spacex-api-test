@@ -7,83 +7,95 @@
         font-size: 50px;
         font-weight: bold;
     }
+    .inputs-header {
+        display: flex;
+    }
 }
 
-form {
+.type-dd {
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    margin-right: 20px;
+    height: 3rem;
+}
+.input-container {
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 1s;
-    width: 50px;
-    height: 50px;
-    background: white;
-    box-sizing: border-box;
-    border-radius: 25px;
-    border: 4px solid white;
-    padding: 5px;
+    width: 270px;
 }
 
 input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 42.5px;
-    line-height: 30px;
-    outline: 0;
     border: 0;
-    display: none;
-    font-size: 1em;
-    border-radius: 20px;
-    padding: 0 20px;
-}
-
-.fa {
+    border-bottom: 2px solid #9e9e9e;
+    outline: none;
+    transition: 0.2s ease-in-out;
     box-sizing: border-box;
-    padding: 10px;
-    width: 42.5px;
-    height: 42.5px;
-    position: absolute;
+}
+
+label {
     top: 0;
-    right: 0;
-    border-radius: 50%;
-    color: #07051a;
-    text-align: center;
-    font-size: 1.2em;
-    transition: all 1s;
-}
-
-form:hover,
-form:valid {
-    width: 400px;
-    cursor: pointer;
-}
-
-form:hover input,
-form:valid input {
-    display: block;
-}
-
-form:hover .fa,
-form:valid .fa {
-    background: #07051a;
-    color: white;
-}
-
-a {
-    display: none;
-    position: absolute;
-    top: 70px;
-    bottom: 0;
     left: 0;
     right: 0;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    width: 100%;
+    color: #616161;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 1rem;
+    cursor: text;
+    padding: 10px;
+    transition: 0.2s ease-in-out;
+    box-sizing: border-box;
 }
 
-form:valid a {
-    display: block;
+input,
+label {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Interation */
+input:valid,
+input:focus {
+    border-bottom: 2px solid #fff;
+}
+
+input:valid + label,
+input:focus + label {
+    color: #fff;
+    font-size: 0.8rem;
+    top: -30px;
+    pointer-events: none;
+}
+
+/* Just for leave it a little more beautiful */
+* {
+    font-family: sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #e0f2f1;
+}
+h1 {
+    color: #616161;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+section {
+    margin: 15px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+    background-color: #00000000;
 }
