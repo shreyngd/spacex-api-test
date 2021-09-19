@@ -81,7 +81,7 @@ const LaunchesListContainer: React.FC = () => {
     };
 
     const throttle = (callback: Function, time: number): (() => void) => {
-        return (...args: any[]) => {
+        return (...args: unknown[]) => {
             if (!inThrottle) {
                 callback(...args);
                 inThrottle = true;

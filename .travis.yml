@@ -7,7 +7,6 @@ cache:
         - public
         - .cache
 script:
-    - yarn test
     - yarn build # Generate static HTML files
 
 # Here is the magic part
