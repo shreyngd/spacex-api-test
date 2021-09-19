@@ -13,7 +13,7 @@ import HR from './HR';
 import { LaunchHistory } from './LaunchesListContainer';
 import { format } from 'date-fns';
 
-Modal.setAppElement('#modal');
+Modal.setAppElement('#modal-for-compare');
 
 const ComparisionModal: React.FC = () => {
     const open = useAppSelector(selectCompareState);
