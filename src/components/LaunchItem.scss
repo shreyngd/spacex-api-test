@@ -88,6 +88,8 @@
                         }
                         .payloads {
                             padding: 0 5px;
+                            height: 135px;
+                            overflow: auto;
                             .payload {
                                 &.payload-title {
                                     margin-bottom: 3px;
@@ -109,6 +111,7 @@
         .ships-view {
             display: flex;
             justify-content: center;
+            margin-top: 5px;
             .ship-view {
                 width: 330px;
                 margin: 0 10px;

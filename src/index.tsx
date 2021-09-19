@@ -10,6 +10,21 @@ const client = new ApolloClient({
     uri: 'https://api.spacex.land/graphql/',
     cache: new InMemoryCache({
         addTypename: false,
+        typePolicies: {
+            Query: {
+                fields: {
+                    launchesPast: {
+                        keyArgs: false,
+                        // Concatenate the incoming list items with
+                        // the existing list items.
+                        merge(existing = [], incoming) {
+                            console.log(existing, incoming);
+                            return [...existing, ...incoming];
+                        },
+                    },
+                },
+            },
+        },
     }),
 });
 

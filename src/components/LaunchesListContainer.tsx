@@ -90,6 +90,7 @@ const LaunchesListContainer: React.FC = () => {
             }
         };
     };
+    console.log(data);
 
     return (
         <div className="launchListContainer">

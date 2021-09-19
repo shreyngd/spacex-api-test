@@ -5,12 +5,15 @@ import './LaunchItem.scss';
 import ReactPlayer from 'react-player/youtube';
 import { format } from 'date-fns';
 import MapIcon from '../assets/map.png';
+import { useAppDispatch } from '../app/hooks';
+import { addToComapare } from '../features/compare/compareSlice';
 
 interface LaunchItemProps {
     data: LaunchHistory;
 }
 
 const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
+    const dispatch = useAppDispatch();
     const openLocation = (): void => {
         window.open(
             'https://www.google.com/maps?q=' +
@@ -21,7 +24,12 @@ const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
     return (
         <div className="launchItem">
             <div className="itemContainer">
-                <div className="title">{data.mission_name}</div>
+                <div className="title">
+                    {data.mission_name}
+                    <button onClick={() => dispatch(addToComapare(data))}>
+                        Add to compare
+                    </button>
+                </div>
                 <HR />
                 <div className="l2">
                     <div className="left">
@@ -80,6 +88,10 @@ const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
                             <div className="rocket-name">
                                 Rocket name:{' '}
                                 <strong>{data.rocket.rocket_name}</strong>
+                            </div>
+                            <div className="rocket-name">
+                                Rocket type:{' '}
+                                <strong>{data.rocket.rocket_type}</strong>
                             </div>
                             <div className="stages-info">
                                 <div className="stage-1">
@@ -145,20 +157,29 @@ const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
                     </div>
                 </div>
                 <HR />
-                <div>Ships used: </div>
+                <div>
+                    Ships used:{' '}
+                    <strong>{data.ships.filter((ship) => ship).length}</strong>
+                </div>
 
                 <div className="ships-view">
-                    {data.ships.map((ship) => (
-                        <div className="ship-view">
-                            <img className="ship-img" src={ship.image} alt="" />
-                            <div className="ship-name">
-                                <strong>{ship.name}</strong>
+                    {data.ships
+                        .filter((ship) => ship)
+                        .map((ship) => (
+                            <div className="ship-view">
+                                <img
+                                    className="ship-img"
+                                    src={ship.image}
+                                    alt=""
+                                />
+                                <div className="ship-name">
+                                    <strong>{ship.name}</strong>
+                                </div>
+                                <div className="ship-port">
+                                    <em>{ship.home_port}</em>
+                                </div>
                             </div>
-                            <div className="ship-port">
-                                <em>{ship.home_port}</em>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
                 </div>
             </div>
         </div>
