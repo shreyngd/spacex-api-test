@@ -2,7 +2,7 @@
     "name": "swarm-test",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://shreyngd.github.io/tesla-api-test",
+    "homepage": "https://shreyngd.github.io/spacex-api-test",
     "dependencies": {
         "@apollo/client": "^3.4.12",
         "@reduxjs/toolkit": "^1.5.1",
