@@ -1,15 +1,14 @@
 import React from 'react';
-import Modal from 'react-modal';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import {
     deleteFromCompare,
     selectCompareData,
     allClear,
+    openModal,
 } from '../features/compare/compareSlice';
 import './Compare.scss';
 import TrashIcon from '../assets/trash.png';
 
-Modal.setAppElement('#modal');
 const Compare: React.FC = () => {
     const compareSelect = useAppSelector(selectCompareData);
     const compareVals = Object.entries(compareSelect);
@@ -70,7 +69,12 @@ const Compare: React.FC = () => {
                 ) : (
                     Disabled
                 )}
-                <div className="button1" role="button" tabIndex={0}>
+                <div
+                    className="button1"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => dispatch(openModal())}
+                >
                     COMPARE
                 </div>
                 <div

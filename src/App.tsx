@@ -5,6 +5,7 @@ import Stars from './components/Stars';
 import Rocket from './components/Rocket';
 import Header from './components/Header';
 import Compare from './components/Compare';
+import ComparisionModal from './components/ComparisionModal';
 
 const App = (): React.ReactElement => {
     return (
@@ -14,6 +15,7 @@ const App = (): React.ReactElement => {
             <Header />
             <LaunchesListContainer />
             <Compare />
+            <ComparisionModal />
         </div>
     );
 };

@@ -1,0 +1,102 @@
+.modal-content {
+    color: #2c2c2c;
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+}
+
+.modal-title {
+    font-weight: bolder;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    .right {
+        img {
+            height: 20px;
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.1);
+            }
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+    }
+}
+
+.modal-body {
+    flex: 1;
+    display: flex;
+    margin-top: 30px;
+    &.no-data {
+        font-weight: bold;
+        font-size: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+    .launch-compare-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .compare-row {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            .col1 {
+                flex: 1;
+                font-weight: 600;
+            }
+            .col2 {
+                flex: 2;
+            }
+            .col3 {
+                flex: 2;
+            }
+        }
+    }
+}
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    font-size: 14px;
+    .button1 {
+        height: 100%;
+        padding: 5px;
+        width: 150px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fff;
+        margin-right: 5px;
+        color: #2c2c2c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+        &:hover {
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+    .button2 {
+        height: 100%;
+        width: 150px;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #ff2442;
+        margin-right: 5px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}

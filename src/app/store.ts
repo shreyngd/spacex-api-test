@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import compareReducer from '../features/compare/compareSlice';
+import searchReducer from '../features/search/searchSlice';
 
 export const store = configureStore({
     reducer: {
         compare: compareReducer,
+        search: searchReducer,
     },
 });
 

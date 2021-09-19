@@ -59,7 +59,7 @@ const LaunchItem: React.FC<LaunchItemProps> = ({ data }: LaunchItemProps) => {
                                 <strong>
                                     {format(
                                         new Date(data.launch_date_local),
-                                        'dd/MM/yyyy',
+                                        'dd/MM/yyyy hh:mm a',
                                     )}
                                 </strong>
                             </div>
