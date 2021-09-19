@@ -5,6 +5,8 @@ import { PastLaunchQuery } from '../Queries';
 import LaunchItem from './LaunchItem';
 import './LaunchListContainer.scss';
 import InfiniteScroll from 'react-infinite-scroller';
+import { useAppSelector } from '../app/hooks';
+import { selectSearch } from '../features/search/searchSlice';
 
 let inThrottle: boolean;
 export interface LaunchHistory {
@@ -57,6 +59,7 @@ interface LaunchHistoryVars {
 const LaunchesListContainer: React.FC = () => {
     const [offset, setOffset] = useState<number>(0);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const search = useAppSelector(selectSearch);
     const { data, fetchMore, loading } = useQuery<
         LaunchHistoryData,
         LaunchHistoryVars
@@ -90,7 +93,6 @@ const LaunchesListContainer: React.FC = () => {
             }
         };
     };
-    console.log(data);
 
     return (
         <div className="launchListContainer">
