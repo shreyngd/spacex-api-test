@@ -2,6 +2,7 @@
     position: fixed;
     bottom: -40px;
     animation: xAxis 10s alternate ease-in;
+    z-index: -1;
 }
 
 .rocket {

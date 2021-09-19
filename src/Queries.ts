@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const PastLaunchQuery = gql`
-    {
-        launchesPast(limit: 10) {
+    query laungHistory($offset: Int!, $limit: Int!) {
+        launchesPast(limit: $limit, offset: $offset) {
             mission_name
+            id
             launch_date_local
             launch_site {
                 site_name_long
@@ -14,6 +15,7 @@ export const PastLaunchQuery = gql`
             }
             rocket {
                 rocket_name
+                rocket_type
                 first_stage {
                     cores {
                         flight

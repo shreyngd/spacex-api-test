@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { PastLaunchQuery } from '../Queries';
 import LaunchItem from './LaunchItem';
 import './LaunchListContainer.scss';
+import InfiniteScroll from 'react-infinite-scroller';
 
+let inThrottle: boolean;
 export interface LaunchHistory {
     mission_name: string;
+    id: string;
     launch_date_local: string;
     launch_site: {
         site_name_long: string;
@@ -16,6 +20,7 @@ export interface LaunchHistory {
     };
     rocket: {
         rocket_name: string;
+        rocket_type: string;
         first_stage: {
             cores: Array<{
                 flight: number;
@@ -50,18 +55,63 @@ interface LaunchHistoryVars {
 }
 
 const LaunchesListContainer: React.FC = () => {
-    const { data, loading } = useQuery<LaunchHistoryData, LaunchHistoryVars>(
-        PastLaunchQuery,
-    );
-    useEffect(() => {
-        console.log(data);
-    }, [data, loading]);
+    const [offset, setOffset] = useState<number>(0);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const { data, fetchMore, loading } = useQuery<
+        LaunchHistoryData,
+        LaunchHistoryVars
+    >(PastLaunchQuery, {
+        variables: {
+            offset: 0,
+            limit: 10,
+        },
+    });
+
+    const loadMore = (): void => {
+        if (!loading) {
+            fetchMore({
+                variables: {
+                    offset: offset + 10,
+                    limit: 10,
+                },
+            });
+        }
+
+        setOffset((val) => val + 10);
+    };
+
+    const throttle = (callback: Function, time: number): (() => void) => {
+        return (...args: any[]) => {
+            if (!inThrottle) {
+                callback(...args);
+                inThrottle = true;
+
+                setTimeout(() => (inThrottle = false), time);
+            }
+        };
+    };
+
     return (
         <div className="launchListContainer">
-            <div className="subContainer">
-                {data?.launchesPast.map((launch) => (
-                    <LaunchItem data={launch} />
-                ))}
+            <div className="subContainer" ref={scrollRef}>
+                <InfiniteScroll
+                    pageStart={0}
+                    initialLoad={false}
+                    loadMore={throttle(loadMore, 1000)}
+                    hasMore={data ? data.launchesPast.length % 10 === 0 : false}
+                    loader={
+                        <div className="loader" key={0}>
+                            Loading ...
+                        </div>
+                    }
+                    useWindow={false}
+                    getScrollParent={() => scrollRef.current}
+                    threshold={10}
+                >
+                    {data?.launchesPast.map((launch) => (
+                        <LaunchItem data={launch} key={launch.id} />
+                    ))}
+                </InfiniteScroll>
             </div>
         </div>
     );
