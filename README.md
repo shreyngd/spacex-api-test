@@ -13,7 +13,7 @@ yarn start
 
 ## Demo
 
-https://shreyngd.github.io/tesla-api-test/
+https://shreyngd.github.io/spacex-api-test/
 
 ## Features
 
